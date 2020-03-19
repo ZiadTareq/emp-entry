@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var parser = require('body-parser');
+var axios = require('axios');
 
 app.use(parser.urlencoded({extended: true}));
 
@@ -18,19 +19,19 @@ app.get('/', function(req, res) {
 });
 
 app.post('/add', function(req, res) {
-  res.set('Content-Type', 'application/json');
-  request.post(
-    'http://localhost:3000/api/enteries',
-      JSON.stringify(req.body),
-    (error, res, body) => {
-      if (error) {
-        console.error(error);
-        return;
-      }
-      console.log(`statusCode: ${res.statusCode}`);
-      console.log(body);
-    }
-  );
+  const options = {
+    headers: {'Content-Type': 'application/json'},
+  };
+
+  axios
+  .post('http://localhost:3000/api/enteries', JSON.stringify(req.body), options)
+  .then(res => {
+    console.log(`statusCode: ${res.statusCode}`);
+    console.log(res);
+  })
+  .catch(error => {
+    console.error(error);
+  });
 
   console.log(JSON.stringify(req.body));
 });
