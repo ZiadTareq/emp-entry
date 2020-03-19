@@ -24,16 +24,33 @@ app.post('/add', function(req, res) {
   };
 
   axios
-  .post('http://localhost:3000/api/enteries', JSON.stringify(req.body), options)
-  .then(res => {
-    console.log(`statusCode: ${res.statusCode}`);
-    console.log(res);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+    .post('http://localhost:3000/api/enteries', JSON.stringify(req.body), options)
+    .then(res => {
+      console.log(`statusCode: ${res.statusCode}`);
+      console.log(res);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 
   console.log(JSON.stringify(req.body));
+  res.redirect('/');
+});
+
+app.post('/delete', function(req, res) {
+  const url = 'http://localhost:3000/api/enteries/' + JSON.stringify(req.body['id']).replace(/^"(.*)"$/, '$1');
+  axios
+    .delete(url)
+    .then(res => {
+      console.log(`statusCode: ${res.statusCode}`);
+      console.log(res);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  console.log(url);
+
+  res.redirect('/');
 });
 
 app.listen('3333', function() {
