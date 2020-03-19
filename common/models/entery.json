@@ -1,0 +1,25 @@
+{
+  "name": "entery",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "empName": {
+      "type": "string",
+      "required": true
+    },
+    "dept": {
+      "type": "string"
+    },
+    "hired-in": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

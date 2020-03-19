@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <% data.forEach(function(emp){ %>
+    <li><%= emp['dept'] %> - <%= emp['empName'] %> - <%= emp['hired-in'].substring(0, emp['hired-in'].indexOf('T')) %></li>
+  <% }) %>
+
+  <form action="/add" method="post">
+    emp name: <input type="text" name="empName">
+    department: <input type="text" name="dept">
+    hired in: <input type="date" name="hired-in">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</body>
+</html>
+
+
+<!--
+
+  var formData = document.getElementByClassName('.contact-form')[0].serializeObject();
+  console.log(formData);
+
+const form = document.getElementByClassName('.contact-form')[0];
+// Get the form data with our (yet to be defined) function.
+const data = getFormDataAsJSON(form);
+// Do something with the email address.
+doSomething(data.email); -->
