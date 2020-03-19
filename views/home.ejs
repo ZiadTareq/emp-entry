@@ -1,24 +1,48 @@
 <%- include('partials/header'); -%>
 
 <div class="container">
+  <div class="jumbotron">
+    <h1>Employees entry system</h1>
+    <p>an employees entry system made with loopback as backend and express for routing and ejs & bootstrap for frontend.</p>
+  </div>
+</div>
+<div class="container">
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">all employees</a>
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+        aria-controls="pills-home" aria-selected="true">all employees</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">add employee</a>
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+        aria-controls="pills-profile" aria-selected="false">add employee</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">delete employee</a>
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab"
+        aria-controls="pills-contact" aria-selected="false">delete employee</a>
     </li>
   </ul>
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-      <% data.forEach(function(emp){ %>
-        <li>
-          <%= emp['dept'] %> - <%= emp['empName'] %> - <%= emp['hired-in'].substring(0, emp['hired-in'].indexOf('T')) %> - ID:( <%= emp['id'] %> )
-        </li>
-        <% }) %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">employee name</th>
+            <th scope="col">department</th>
+            <th scope="col">hiring date</th>
+            <th scope="col">ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(function(emp){ %>
+          <tr>
+            <th scope="row"><%= emp['empName'] %></th>
+            <td><%= emp['dept'] %></td>
+            <td><%= emp['hired-in'].substring(0, emp['hired-in'].indexOf('T')) %></td>
+            <td><%= emp['id'] %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
     </div>
     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <form action="/add" method="post">
